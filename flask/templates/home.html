@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="en">
+  <head>
+
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+
+
+    <script type="text/javascript"></script>
+
+
+    <title>Sentimenter</title>
+  
+  </head>
+  <body style="background-color:  #2F4F4F">
+
+<style>
+.row{
+display: block;
+}
+.col{
+background-color: white;
+margin-top: 40px;
+height: 80px;
+}
+.pos{
+  margin-left:300px; 
+  margin-top: 70px;
+}
+.neg{
+  margin-left: 700px;
+  margin-top: 70px;
+}
+.table{
+  background-color: white;
+}
+</style>
+
+
+<nav class="navbar navbar-dark bg-dark">
+  <span class="navbar-brand mb-0 h1">home</span>
+</nav>
+
+<button type="button" class="btn btn-success pos" id="p">{{y}} Positive comments</button>
+<button type="button" class="btn btn-danger neg" id="n">{{x}} Negative comments</button>
+
+
+<div id="nope" style="display: none;">
+<button type="button" class="btn btn-danger pos" id="fam">data</button>
+<button type="button" class="btn btn-danger neg" id="see">Insight</button>
+</div>
+
+<div id="crop" style="display: none;">
+<button type="button" class="btn btn-danger pos" id="first">Topics</button>
+<button type="button" class="btn btn-danger neg" id="second">Top 10 words</button>
+</div>
+
+
+
+
+
+
+<div style="height:500px; overflow-y: scroll;  margin-top: 100px;display: none;width: 1800px;margin-left: 100px;margin-bottom: 40px;" id="yup">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">tweet</th>
+      <th scope="col">sentiment</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in datap %}
+    <tr>
+          
+
+      <td>{{i[1]}}</td>                               <!--------------------------   [0 , text , label  ]                     ---------------->
+      <td>{{i[2]}}</td>
+      <td>{{i[3]}}</td>
+      <td>{{i[4]}}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+
+
+
+<div style="height:300px;margin-top: 100px;background-color: white;display: none;width: 1000px;margin-left: 500px;" id="gross">
+
+    <h3> TOPICS</h3>
+    {%for i in a%} 
+  
+    <h6>{{i}}</h6> 
+  {%endfor%} 
+ {%for u in b%} 
+  
+    <h6>{{u}}</h6> 
+{%endfor%} 
+</div>
+
+
+
+<div style="height:500px; overflow-y: scroll;  margin-top: 100px;display: none;width: 1800px;margin-left: 100px;margin-bottom: 40px;" id="jam">
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">name</th>
+      <th scope="col">tweet</th>
+      <th scope="col">sentiment</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for i in datan %}
+    <tr>
+     
+      <td>{{i[1]}}</td>                               <!--------------------------   [0 , text , label  ]                     ---------------->
+      <td>{{i[2]}}</td>
+      <td>{{i[3]}}</td>
+      <td>{{i[4]}}</td>
+    </tr>
+{% endfor %}
+  </tbody>
+</table>
+</div>
+
+
+
+<div style="margin-left: 100px;margin-top: 10px;background-color: white;width: 1800px;height: 150px;display: none;margin-bottom: 50px;" id="tim">
+	
+	 <h1>
+    {{c}}
+   </h1> 
+
+</div>
+
+
+
+
+
+	  <script>
+      
+      $('#p').click(function(){
+        $('#yup').toggle();
+        window.scrollTo(0,0);
+      });
+
+        $('#n').click(function(){
+        $('#nope').toggle();
+        window.scrollTo(0,0);
+      });
+
+
+  	$('#fam').click(function(){
+        $('#jam').toggle();
+        window.scrollTo(0,0);
+      });
+
+
+  	$('#see').click(function(){
+        $('#crop').toggle();
+        window.scrollTo(0,0);
+      });
+
+
+  	$('#first').click(function(){
+        $('#gross').toggle();
+        window.scrollTo(0,0);
+      });
+
+	
+	$('#second').click(function(){
+        $('#tim').toggle();
+        window.scrollTo(0,0);
+      });
+
+      </script>
+
+
+
+
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
